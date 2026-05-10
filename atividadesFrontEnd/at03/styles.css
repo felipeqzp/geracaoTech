@@ -1,0 +1,141 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    min-height: 100%;
+    overscroll-behavior: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Google Sans;
+    background: linear-gradient(#002c69, #001129);
+    background-attachment: fixed;
+}
+
+h1{
+    margin-top: 1em;
+    padding: 0;
+}
+
+ul{
+    padding: 0;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.bio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    box-shadow: 0 0.4em 0 #00122a;
+    width: 50%;
+    padding: 2em;
+    margin-top: 1em;
+    border-radius: 1em;
+}
+
+.bio p{
+    color: black;
+    font-size: 18px;
+    font-style: italic;
+    text-align: justify;
+    margin-top: 1em;
+}
+
+.habilidades{
+    background-color: #2196f3;
+    box-shadow: 0 0.4em 0 #1a6aab;
+    padding: 2em;
+    width: 90%;
+    margin-top: 2em;
+    text-align: justify;
+    border-radius: 1em;
+}
+
+.habilidades-title{
+    color: #00122a;
+}
+
+.habilidade-tech{
+    color: #00122a;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.habilidade-art{
+    color: #00122a;
+    font-style: italic;
+    font-size: 18px;
+}
+
+svg{
+    width: 75px;
+}
+
+svg:hover{
+    fill: #2196f3;
+    transition: 0.5s ease;
+}
+
+.contatos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2em;
+    padding: 0;
+}
+
+.icones a{
+    margin: 2em;
+    padding: 0;
+}
+
+@media(max-width: 1440px){
+    .bio{
+        width: 65%;
+    }
+}
+
+@media(max-width: 768px){
+    .contatos{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 2em;
+        padding: 0;
+    }
+    .bio{
+        width: 65%;
+    }
+    .icones{
+        width: 100%;
+    }
+    svg{
+        width: 65px;
+    }
+}
+
+@media(max-width: 425px){
+    h1{
+        font-size: 25px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    .bio p, .bio li{
+        font-size: 14px;
+    }
+    svg{
+        width: 45px;
+    }
+    .icones a{
+        margin: 0;
+    }
+}

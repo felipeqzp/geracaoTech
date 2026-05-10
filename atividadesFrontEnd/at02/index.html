@@ -1,0 +1,596 @@
+<!-- Créditos -->
+<!-- Desenvolvedor do site: Felipe Queiroz Pinheiro -->
+<!-- Data da criação: 13/01/2026-->
+<!-- Descrição: um simples site para consulta do calendário da Fórmula 1 (temporada de 2026) -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 02 - Geração Tech 3.0</title>
+    <style>
+        @font-face{
+            font-family: Formula-1-regular;
+            src: url(Formula1-Regular_web_0.ttf);
+        }
+
+        @font-face{
+            font-family: Formula-1-bold;
+            src: url(Formula1-Bold_web_0.ttf);
+        }
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body{
+            font-family: Formula-1-regular;
+            background: linear-gradient(#0f0f14, #252431);
+            color: #f2f2f2;
+            margin: auto;
+            line-height: 35px;
+            
+        }
+
+        header{
+            background-color: #252431;
+            color: #f2f2f2;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            z-index: 1000;
+            box-shadow: 0 0 45px #0f0f14;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 8%;
+        }
+
+        ul{
+            list-style-type: none;
+            padding: 0px;
+        }
+
+        a{
+            text-decoration: none;
+            color: #f2f2f2;
+        }
+        a:hover{
+            color: #dddddd;
+        }
+
+        h1{
+            margin-bottom: 50px;
+        }
+
+        h3{
+            font-size: 24px;
+        }
+
+        .titulo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .f1-title{
+            color: #fc2c2c;
+            font-family: Formula-1-bold;
+            font-size: 48px;
+            margin-right: 20px;
+            font-style: italic;
+        }
+
+        .f1-slogan{
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .menu-navegacao{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            gap: 25px;
+        }
+
+        .descricao{
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        #sobre-formula{
+            font-size: 18px;
+            width: 90%;
+        }
+
+        .formula1{
+            color: #fc2c2c;
+        }
+
+        .linha-horizontal{
+            width: 100%;
+            color: #f2f2f2;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .topico{
+            text-transform: uppercase;
+            font-size: 22px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .cards{
+            margin-top: 50px;
+            margin-bottom: 100px;
+        }
+
+        .card{
+            background: linear-gradient(#252431, #0f0f14);
+            padding: 30px;
+            text-align: justify;
+            border: 1px solid #fc2c2c;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .card:hover{
+            scale: 102%;
+            box-shadow: 0 0 45px #0f0f14;
+            transition: 0.5s;
+        }
+
+        .card summary{
+            list-style: none;
+        }
+
+        .card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .card p{
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 0;
+            transition: max-height 0.5s ease;
+        }
+
+        .card[open] p{
+            max-height: 999px;
+            margin-top: 15px;
+        }
+
+        #calendario-2026{
+            width: 70%;
+            text-align: center;
+        }
+
+        .tabela-calendario{
+            margin-top: 50px;
+        }
+
+        .line-title{
+            background-color: #252431;
+            border-radius: 20px;
+        }
+
+        .tabela-calendario li{
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 20px;
+            border-bottom: 1px solid #fc2c2c;
+        }
+
+        .tabela-calendario .data{
+            width: 40%;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .tabela-calendario .gp {
+            flex: 1;
+        }
+
+        .tabela-calendario .sprint{
+            width: 33%;
+            flex-shrink: 0;
+            text-align: right;
+            font-style: italic;
+        }
+
+        footer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0f0f14;
+            height: 150px;
+            position: relative;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #midias-footer{
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .photo{
+            width: 648px;
+            height: 432px;
+            border-radius: 35px;
+            margin: 10px;
+        }
+
+        .photo:hover{
+            box-shadow: 0 0 45px #0f0f14;
+            cursor: pointer;
+            scale: 102%;
+            transition: 0.5s;
+        }
+
+        .video p{
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .video a{
+            color: #fc2c2c;
+        }
+
+        .whatis-formula p{
+            text-align: justify;
+        }
+
+        .season{
+            padding: 8px;
+            background-color: #fc2c2c;
+            border-radius: 10px;
+        }
+
+        .midias-header{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .bn-range h1{
+            padding: 0;
+            margin: 0;
+        }
+
+        .breaking-news{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .bn-range{
+            color: #f2f2f2;
+            background-color: #fc2c2c;
+            width: 100%;
+            padding: 15px;
+            margin-top: 75px;
+        }
+
+        .bn-content{
+            margin-top: 25px;
+            text-align: center;
+            width: 50%;
+            padding: 25px;
+            background-color: #0f0f14;
+            border-radius: 25px;
+        }
+
+        .bn-content p{
+            text-align: justify;
+        }
+
+        audio{
+            width: 75%;
+            border-radius: 15px;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="titulo">
+            <!-- <p class="f1-title">F1</p> -->
+            <a href="#"><img src="img/F1.png" alt="logo-f1" width="90px" height="25px"></a>
+            <p class="f1-slogan">Engineered Insanity</p>
+        </div>
+        <p class="descricao">Site simples para consulta do calendário da temporada de 2026 e algumas capturas (fotos e vídeos) da temporada de 2025.</p>
+        <nav>
+            <ul class="menu-navegacao">
+                <li><a href="#">Home</a></li>
+                <li><a href="#sobre-formula">Sobre</a></li>
+                <li><a href="#calendario-2026">Calendário</a></li>
+                <li><a href="#midias-footer">Mídias</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="midias-header">
+            <h1>This is Formula 1</h1>
+            <div class="video">
+                <video width="1280" height="720" controls poster="img/hq720.jpg">
+                    <source src="video-formula1.mp4" type="video/mp4">
+                    O seu navegador não suporta este vídeo.
+                </video>
+                <p>Vídeo retirado do canal <a href="https://www.youtube.com/@hudsonfilmss" target="_blank">hudsonfilms</a> no
+                    YouTube.
+                </p>
+            </div>
+        </div>
+        <article id="sobre-formula">
+            <div class="whatis-formula">
+                <h2 class="whatis-title">O que é a <span class="formula1">Formula 1?</span></h2>
+                <hr class="linha-horizontal">
+                <p>
+                    A <span class="formula1">Fórmula 1</span> é a principal categoria do automobilismo mundial, reconhecida por combinar velocidade extrema, inovação
+                    tecnológica e competição estratégica. Desde sua criação em 1950, o esporte se transformou de simples corridas de
+                    carros de corrida para um verdadeiro laboratório de alta tecnologia, onde equipes como Red Bull, Mercedes, Ferrari,
+                    McLaren e outras disputam um campeonato anual composto por cerca de dois dezenas de Grandes Prêmios ao redor do
+                    mundo.
+            
+                    Os carros de Fórmula 1 são monopostos de altíssimo desempenho que podem atingir velocidades superiores a <span class="formula1">300 km/h</span>.
+                    Eles utilizam complexos sistemas híbridos que combinam motores de combustão interna com energia elétrica recuperada
+                    durante a frenagem, buscando não apenas potência, mas também eficiência energética. Com o passar dos anos, a
+                    importância da aerodinâmica só aumentou — o design das asas, difusores e superfícies é tão crítico que pequenas
+                    mudanças podem impactar diretamente o desempenho nas retas e curvas.
+                </p>
+            </div>
+
+            <div class="cards">
+                <details class="card">
+                    <summary class="topico">Atualizações técnicas e sustentabilidade</summary>
+                    <p>
+                        Nas últimas temporadas, a <span class="formula1">Fórmula 1</span> intensificou sua meta de ser mais sustentável sem perder performance. A
+                        partir
+                        de 2026, a categoria introduz combustíveis mais sustentáveis e unidades de potência com maior participação
+                        elétrica,
+                        além de regras que exigem redução de emissões e uso de tecnologias voltadas à eficiência energética.
+            
+                        As <span class="formula1">mudanças regulamentares para 2026</span> representam uma revolução técnica na F1, incluindo:
+            
+                        Carros mais leves, menores e com aerodinâmica ativa que ajuda a equilibrar aderência e velocidade.
+            
+                        A substituição progressiva do tradicional DRS por sistemas mais inteligentes de aerodinâmica e modos de
+                        potência
+                        elétrica.
+            
+                        O uso obrigatório de sustainable fuels (combustíveis sustentáveis) que reduzem o impacto ambiental da
+                        categoria.
+            
+                        Essas mudanças não só tornam as corridas mais desafiantes para as equipes e pilotos, mas também impulsionam
+                        a
+                        transferência de tecnologia para carros de rua, algo que tradicionalmente ocorre à medida que inovações da
+                        F1
+                        amadurecem.
+                    </p>
+                </details>
+                <details class="card">
+                    <summary class="topico">Temporadas recentes e competições</summary>
+                    <p>
+                        Nos últimos anos, a <span class="formula1">Fórmula 1</span> foi palco de disputas emocionantes. A temporada de 2025 incluiu sprints em
+                        várias
+                        etapas, como no GP da China, onde corridas curtas deram pontos extras e aumentaram a competitividade desde o
+                        início
+                        dos fins de semana de corrida.
+            
+                        No encerramento da temporada em Abu Dhabi, a disputa pelo título foi decidida na última corrida, com <span class="formula1">Lando Norris</span>
+                        conquistando seu primeiro título mundial em uma das mais equilibradas batalhas dos últimos tempos.
+            
+                        Calendários e contratos também estão sendo ampliados: muitos Grandes Prêmios já foram renovados por vários
+                        anos,
+                        incluindo Miami, Canadá e Mônaco, e a F1 retornará a Portugal em 2027 e 2028.
+                    </p>
+                </details>
+                <details class="card">
+                    <summary class="topico">Estratégia e inteligência esportiva</summary>
+                    <p>
+                        Além da velocidade, a <span class="formula1">Fórmula 1</span> é um jogo de estratégia. Decisões sobre trocas de pneus, gerenciamento de
+                        energia e
+                        ritmo de corrida muitas vezes determinam quem sobe ao pódio. A introdução de sprints e o maior tempo na
+                        pista para
+                        pilotos iniciantes <span class="formula1">(rookies)</span> também alteram a dinâmica competitiva e ajudam a revelar novos talentos.
+                    </p>
+                </details>
+                <details class="card">
+                    <summary class="topico">O futuro e novas equipes</summary>
+                    <p>
+                        A F1 continua atraindo investimentos e expandindo sua relevância global. Para a temporada de 2026, novas
+                        equipes
+                        como <span class="formula1">Audi</span> e <span class="formula1">Cadillac</span> estão entrando na categoria, aumentando a diversidade de fabricantes e tecnologias na
+                        pista.
+                    </p>
+                </details>
+            </div>
+
+            <hr class="linha-horizontal">
+        </article>
+        <section id="calendario-2026">
+            <h3>Calendário da <span class="formula1">Formula 1</span> para a temporada de <span class="season">2026</span></h3>
+            <ul class="tabela-calendario">
+                <li class="line-title">
+                    <span class="data">Datas</span>
+                    <span class="gp">Grande-Prêmio</span>
+                    <span class="sprint">Sprint</span>
+                </li>
+                <li>
+                    <span class="data">6 a 8 de março</span>
+                    <span class="gp">GP da Austrália</span>
+                    <span class="sprint"></span>
+                    
+                </li>
+                <li>
+                    <span class="data">13 a 15 de março</span>
+                    <span class="gp">GP da China</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">27 a 29 de março</span>
+                    <span class="gp">GP do Japão</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">10 a 12 de abril</span>
+                    <span class="gp">GP do Bahrein</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">17 a 19 de abril</span>
+                    <span class="gp">GP da Arábia Saudita</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">1 a 3 de maio</span>
+                    <span class="gp">GP de Miami</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">22 a 24 de maio</span>
+                    <span class="gp">GP do Canadá</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">5 a 7 de junho</span>
+                    <span class="gp">GP de Mônaco</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">12 a 14 de junho</span>
+                    <span class="gp">GP de Barcelona-Catalunha</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">26 a 28 de junho</span>
+                    <span class="gp">GP da Áustria</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">3 a 5 de julho</span>
+                    <span class="gp">GP da Grã-Bretanha</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">17 a 19 de julho</span>
+                    <span class="gp">GP da Bélgica</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">24 a 26 de julho</span>
+                    <span class="gp">GP da Hungria</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">21 a 23 de agosto</span>
+                    <span class="gp">GP da Holanda</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">4 a 6 de setembro</span>
+                    <span class="gp">GP da Itália</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">11 a 13 de setembro</span>
+                    <span class="gp">GP da Espanha</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">24 a 26 de setembro</span>
+                    <span class="gp">GP do Azerbaijão</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">9 a 11 de outubro</span>
+                    <span class="gp">GP de Singapura</span>
+                    <span class="sprint"><svg width="25" height="25" viewbox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="green"></circle></svg></span>
+                </li>
+                <li>
+                    <span class="data">23 a 25 de outubro</span>
+                    <span class="gp">GP dos Estados Unidos</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">30 de out a 1 de nov</span>
+                    <span class="gp">GP da Cidade do México</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">6 a 8 de novembro</span>
+                    <span class="gp">GP de São Paulo</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">19 a 21 de novembro</span>
+                    <span class="gp">GP de Las Vegas</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">27 a 29 de novembro</span>
+                    <span class="gp">GP do Catar</span>
+                    <span class="sprint"></span>
+                </li>
+                <li>
+                    <span class="data">4 a 6 de dezembro</span>
+                    <span class="gp">GP de Abu Dhabi</span>
+                    <span class="sprint"></span>
+                </li>
+            </ul>
+        </section>
+        <section id="midias-footer">
+            <h3 class="text-midias">Confira algumas capturas feitas da temporada de 2025</h3>
+            <img class="photo" src="img/11-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da sauber">
+            <img class="photo" src="img/24-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da redbull">
+            <img class="photo" src="img/43-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da ferrari">
+            <img class="photo" src="img/44-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da mclaren2">
+            <img class="photo" src="img/m557121-Aangepast.jpg" alt="carro da mercedes no por do sol">
+            <img class="photo" src="img/39-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da redbull2">
+            <img class="photo" src="img/25-saturday-yasmarina-2025-Aangepast.jpg" alt="carro da mclaren">
+            <img class="photo" src="img/SI202512060153-Aangepast.jpg" alt="arquibancada">
+
+            <div class="breaking-news">
+                <div class="bn-range">
+                    <h1>BREAKING NEWS!!</h1>
+                </div>
+                <div class="bn-content">
+                    <h2>Audi liga motor de <span class="season">2026</span> pela primeira vez e prepara início na F1</h2>
+            
+                    <p>Equipe do brasileiro <span class="formula1">Gabriel Bortoleto</span> produziu a própria unidade de potência e confirmou o funcionamento em
+                        cerimônia na cidade suíça de Hinwil. A unidade de potência vai seguir híbrida: metade elétrica, metade à
+                        combustão. Porém, deixará de contar com o MGU-H, sistema de recuperação de energia térmica. Além disso, será
+                        35kg mais pesado que o antecessor e terá a parte elétrica mais potente que a de combustão. Os
+                        combustíveis também mudam: serão 100% sustentáveis, e as alternativas fósseis foram banidas. E com isso, a
+                        escuderia já começou a testar seu novo carro para a temporada 2026 de Fórmula 1. O brasileiro <span class="formula1">Gabriel Bortoleto</span> e seu companheiro de equipe, o alemão <span class="formula1">Nico Hülkenberg</span>, foram para a pista testar o monoposto no
+                        circuito de Barcelona para um primeiro “shakedown” e gravações de divulgação.
+                    </p>
+            
+                    <h3>Confira o som do motor da Audi durante os teste em Barcelona:</h3>
+            
+                    <audio src="audi f1 tests.mp3" type="audio/mpeg" controls></audio>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Site não-oficial da <span class="formula1">Formula 1</span> &copy; <span class="autor">Desenvolvido por Felipe</span></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playing Cards</title>
+  
+  <style>
+    body {
+      background-color: pink;
+    }
+  
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  
+    p {
+      font-size: 24px;
+    }
+  
+    #playing-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .card {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+      height: 300px;
+      border: 1px solid black;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 2px 2px 2px gray;
+    }
+  
+    .left,
+    .right {
+      text-align: center;
+      margin: 10px;
+    }
+  
+    .left {
+      align-self: flex-start;
+    }
+  
+    .middle {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+    }
+  
+    .right {
+      align-self: flex-end;
+      transform: scaleY(-1);
+    }
+  
+    .symbol,
+    .symbol-reverse {
+      font-size: 64px;
+    }
+  
+    .symbol-reverse {
+      transform: scaleY(-1);
+    }
+  </style>
+</head>
+
+<body>
+  <main id="playing-cards">
+    <div class="card">
+      <div class="left">
+        <h2>A</h2>
+        <p>♠</p>
+      </div>
+      <div class="middle">
+        <h2 class="symbol">♠</h2>
+      </div>
+      <div class="right">
+        <h2>A</h2>
+        <p>♠</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <h2>2</h2>
+        <p>♣</p>
+      </div>
+      <div class="middle">
+        <h2 class="symbol">♣</h2>
+        <h2 class="symbol-reverse">♣</h2>
+      </div>
+      <div class="right">
+        <h2>2</h2>
+        <p>♣</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="left" style="color: red"">
+        <h2>4</h2>
+        <p>♥</p>
+      </div>
+      <div class="middle" style="color: red"">
+        <h2 class="symbol">♥</h2>
+        <h2 class="symbol">♥</h2>
+        <h2 class="symbol-reverse">♥</h2>
+      </div>
+      <div class="right" style="color: red">
+        <h2>4</h2>
+        <p>♥</p>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
